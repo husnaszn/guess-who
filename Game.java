@@ -1,11 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.awt.event.*;
 public class Game extends JPanel implements Runnable, KeyListener, MouseListener,
 MouseMotionListener{
 private BufferedImage back;
 private int key, x, y;
+private ArrayList <Ppl> ppls;
+
 public Game() {
 new Thread(this).start();
 this.addKeyListener(this);
@@ -14,7 +20,32 @@ this.addMouseMotionListener(this);
 key =-1;
 x=0;
 y=0;
+ppls = setPpl();
+for(Ppl p: ppls){
+    System.out.println(p);
 }
+}
+
+public ArrayList <Ppl> setPpl(){
+    ArrayList<Ppl> temp = new ArrayList<Ppl>();
+    File file = new File("guess_who_3rd.txt");
+   try{
+    Scanner scan = new Scanner(file);
+    System.out.println("file found");
+    while (scan.hasNextLine()) {
+        // System.out.println(scan.nextLine());
+        temp.add(new Ppl(scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine()));
+    }
+
+
+   } catch (FileNotFoundException e) {
+    e.printStackTrace();
+   }
+   System.out.println("set ppls "+ temp.size());
+
+    return temp;
+}
+
 public void run()
 {
 try
