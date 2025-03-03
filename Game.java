@@ -23,6 +23,10 @@ key =-1;
 x = 101;
 y = 10;
 ppls = setPpl();
+for (Ppl p: ppls){
+    System.out.println(p);
+}
+//images\Jules.jpg
 
 
 }
@@ -69,11 +73,12 @@ public ArrayList <Ppl> setPpl(){
 		g2d.clearRect(0, 0, getSize().width, getSize().height);
 
 		twoDgraph.drawImage(back, null, 0, 0);
+        g2d.drawImage(new ImageIcon("images\\husna.jpeg").getImage(), 100, 100, 100, 100, getFocusCycleRootAncestor());
 
         for(Ppl p: ppls){
 
             p.drawPic(g2d);
-            x = x+100; 
+            
         }
 
 	}
