@@ -18,12 +18,13 @@ this.addKeyListener(this);
 this.addMouseListener(this);
 this.addMouseMotionListener(this);
 key =-1;
-x=0;
-y=0;
+// x=0;
+// y=0; 
+x = 101;
+y = 10;
 ppls = setPpl();
-for(Ppl p: ppls){
-    System.out.println(p);
-}
+
+
 }
 
 public ArrayList <Ppl> setPpl(){
@@ -34,6 +35,7 @@ public ArrayList <Ppl> setPpl(){
     System.out.println("file found");
     while (scan.hasNextLine()) {
         // System.out.println(scan.nextLine());
+        // 9 lines each person
         temp.add(new Ppl(scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine(),scan.nextLine()));
     }
 
@@ -46,30 +48,36 @@ public ArrayList <Ppl> setPpl(){
     return temp;
 }
 
-public void run()
-{
-try
-{
-while(true)
-{
-Thread.currentThread().sleep(5);
-repaint();
-}
-}
-catch(Exception e)
-{
-}
-}
-public void paint(Graphics g){
-Graphics2D twoDgraph = (Graphics2D) g;
-if( back ==null)
-back=(BufferedImage)( (createImage(getWidth(), getHeight())));
-Graphics g2d = back.createGraphics();
-g2d.clearRect(0,0,getSize().width, getSize().height);
-g2d.setFont( new Font("Broadway", Font.BOLD, 50));
-g2d.drawString("Hello!" , x, y);
-twoDgraph.drawImage(back, null, 0, 0);
-}
+	public void run() {
+		try {
+			while (true) {
+				Thread.currentThread().sleep(5);
+				repaint();
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public void paint(Graphics g) {
+
+		Graphics2D twoDgraph = (Graphics2D) g;
+		if (back == null)
+			back = (BufferedImage) ((createImage(getWidth(), getHeight())));
+
+		Graphics g2d = back.createGraphics();
+
+		g2d.clearRect(0, 0, getSize().width, getSize().height);
+
+		twoDgraph.drawImage(back, null, 0, 0);
+
+        for(Ppl p: ppls){
+
+            p.drawPic(g2d);
+            x = x+100; 
+        }
+
+	}
+
 //DO NOT DELETE
 @Override
 public void keyTyped(KeyEvent e) {

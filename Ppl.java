@@ -1,3 +1,7 @@
+import java.awt.Graphics;
+
+import javax.swing.ImageIcon;
+
 public class Ppl {
 
     private String name, imageName, happy, friendless, hairColor, uniform, glasses, location, hairLength;
@@ -94,13 +98,17 @@ public class Ppl {
         return hairLength;
     }
 
-    public String toString(){
-            return name + " info:\n" + imageName+ "\n"  + happy+ "\n"  + friendless+ "\n"  + hairColor+ "\n"  + uniform+ "\n"  + glasses+ "\n"  + location+ "\n"  + hairLength+ "\n" ;
-        
-    }
 
     public void setHairLength(String hairLength) {
         this.hairLength = hairLength;
     }
 
+    public String toString(){
+            return name + " info:\n" + imageName+ "\n"  + happy+ "\n"  + friendless+ "\n"  + hairColor+ "\n"  + uniform+ "\n"  + glasses+ "\n"  + location+ "\n"  + hairLength+ "\n" ;
+        
+    }
+
+    public void drawPic(Graphics g2d){
+        g2d.drawImage(new ImageIcon(imageName).getImage(), 0, 0, 100,100, null);
+    }
 }
