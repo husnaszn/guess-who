@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 
 public class Ppl {
 
+    private int x, y;
     private ImageIcon pic;
     private String name, imageName, happy, friendless, hairColor, uniform, glasses, location, hairLength;
     public Ppl(){
@@ -18,11 +19,38 @@ public class Ppl {
         hairLength="short";
 
         pic = new ImageIcon("images\\"+imageName);
+        x = 0;
+        y = 0;
     }
 
-    // public Ppl(ImageIcon pi){
-    //     pic = pi;
-    // }
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public ImageIcon getPic() {
+        return pic;
+    }
+
+    public void setPic(ImageIcon pic) {
+        this.pic = pic;
+    }
+
+    public Ppl(int x1, int y1){
+        x = x1;
+        y = y1;
+    }
 
     public Ppl(String n, String iN, String hap, String f, String hC, String uni, String g, String lo, String hL){
         name =n;
@@ -116,7 +144,7 @@ public class Ppl {
     }
     public void drawPic(Graphics g2d){
         pic = new ImageIcon("images\\"+imageName);
-        g2d.drawImage(pic.getImage(), 0, 0, 100,100, null);
+        g2d.drawImage(pic.getImage(), x, y, 100,100, null);
         System.out.println(pic);
         
     }

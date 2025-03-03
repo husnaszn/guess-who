@@ -1,15 +1,15 @@
-import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Scanner;
-import java.awt.event.*;
+import javax.swing.*;
 public class Game extends JPanel implements Runnable, KeyListener, MouseListener,
 MouseMotionListener{
 private BufferedImage back;
-private int key, x, y;
+private int key, x, y, i;
 private ArrayList <Ppl> ppls;
 
 public Game() {
@@ -24,7 +24,9 @@ x = 101;
 y = 10;
 ppls = setPpl();
 for (Ppl p: ppls){
-    System.out.println(p);
+    // System.out.println(p);
+    p.setX(100);
+    p.setY(100);
 }
 //images\Jules.jpg
 
@@ -36,7 +38,7 @@ public ArrayList <Ppl> setPpl(){
     File file = new File("guess_who_3rd.txt");
    try{
     Scanner scan = new Scanner(file);
-    System.out.println("file found");
+    // System.out.println("file found");
     while (scan.hasNextLine()) {
         // System.out.println(scan.nextLine());
         // 9 lines each person
@@ -47,7 +49,7 @@ public ArrayList <Ppl> setPpl(){
    } catch (FileNotFoundException e) {
     e.printStackTrace();
    }
-   System.out.println("set ppls "+ temp.size());
+//    System.out.println("set ppls "+ temp.size());
 
     return temp;
 }
@@ -72,14 +74,27 @@ public ArrayList <Ppl> setPpl(){
 
 		g2d.clearRect(0, 0, getSize().width, getSize().height);
 
-		twoDgraph.drawImage(back, null, 0, 0);
-        g2d.drawImage(new ImageIcon("images\\husna.jpeg").getImage(), 100, 100, 100, 100, getFocusCycleRootAncestor());
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("hello", 400, 400);
 
-        for(Ppl p: ppls){
+        // for(Ppl p: ppls){
 
-            p.drawPic(g2d);
-            
+        //     
+        // }
+        System.out.println(setPpl());
+
+        for (int i=0; i> setPpl().size();i++){
+            // p.drawPic(g2d);
+            //     p.setX(p.getX() + 120);
+
+            setPpl().get(i).drawPic(g2d);
+            setPpl().get(i).setX(setPpl().get(i).getX() + 120);
+            System.out.println(i);
+
         }
+
+        twoDgraph.drawImage(back, null, 0, 0);
+
 
 	}
 
